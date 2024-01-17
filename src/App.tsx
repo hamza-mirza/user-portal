@@ -1,6 +1,5 @@
-import "./App.css";
-import Applications from "./Applications";
-import Header from "./Header";
+import Applications from './components/Appplications/Applications'
+import Header from './components/Header/Header'
 
 function App() {
   return (
@@ -8,7 +7,7 @@ function App() {
       <Header />
       <Applications />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
