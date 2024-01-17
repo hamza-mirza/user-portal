@@ -2,7 +2,7 @@ import React from 'react'
 import LogoSvg from './logo.svg'
 import styles from './Header.module.css'
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <div className={styles.Header}>
       <LogoSvg className={styles.logo} />

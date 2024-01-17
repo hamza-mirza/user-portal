@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import SingleApplication from '../SingleApplication/SingleApplication'
 import { Button } from '../ui/Button/Button'
+
+import { ApplicationTypes } from '../../types'
+
 import styles from './Applications.module.css'
 
-const Applications = () => {
-  const [applications, setApplications] = useState([])
-  const [page, setPage] = useState(1)
+const Applications: React.FC = () => {
+  const [applications, setApplications] = useState<ApplicationTypes[]>([])
+  const [page, setPage] = useState<number>(1)
   const limit = 5
 
   useEffect(() => {
@@ -19,7 +22,8 @@ const Applications = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`)
       }
-      const data = await response.json()
+
+      const data: ApplicationTypes[] = await response.json()
       setApplications(prev => {
         const existingIds = new Set(prev.map(app => app.id))
         const newApplications = data.filter(app => !existingIds.has(app.id))

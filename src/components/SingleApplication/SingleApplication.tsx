@@ -1,9 +1,16 @@
+import React from 'react'
 import styles from './SingleApplication.module.css'
-
 import { formatDate, formatToGBP } from '../../utils/utils'
 
-const SingleApplication = ({ application }) => {
+import { ApplicationTypes } from '../../types'
+
+type SingleApplicationProps = {
+  application: ApplicationTypes
+}
+
+const SingleApplication: React.FC<SingleApplicationProps> = ({ application }) => {
   const { company, first_name, last_name, email, loan_amount, date_created, expiry_date } = application
+
   return (
     <div className={styles.SingleApplication}>
       <div className={styles.cell}>
