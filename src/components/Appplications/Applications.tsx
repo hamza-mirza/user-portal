@@ -6,7 +6,6 @@ import styles from './Applications.module.css'
 const Applications = () => {
   const [applications, setApplications] = useState([])
   const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(true)
   const limit = 5
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const Applications = () => {
         const newApplications = data.filter(app => !existingIds.has(app.id))
         return [...prev, ...newApplications]
       })
-      setLoading(false)
     } catch (error) {
       console.error('Failed to fetch applications:', error)
     }
@@ -36,12 +34,10 @@ const Applications = () => {
     setPage(prev => prev + 1)
   }
 
-  console.log(applications)
-
   return (
     <>
       <div className={styles.Applications}>
-        {loading && <p>Loading...</p>}
+        {!applications.length && <p>Loading...</p>}
         {applications.map(application => (
           <SingleApplication
             key={application.id}
