@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import SingleApplication from '../SingleApplication/SingleApplication'
 import { Button } from '../ui/Button/Button'
 
@@ -24,6 +24,7 @@ const Applications: React.FC = () => {
       }
 
       const data: ApplicationTypes[] = await response.json()
+      console.log(data)
       setApplications(prev => {
         const existingIds = new Set(prev.map(app => app.id))
         const newApplications = data.filter(app => !existingIds.has(app.id))

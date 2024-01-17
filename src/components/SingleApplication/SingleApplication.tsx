@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './SingleApplication.module.css'
 import { formatDate, formatToGBP } from '../../utils/utils'
 
