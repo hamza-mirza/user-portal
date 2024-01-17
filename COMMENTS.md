@@ -1,3 +1,11 @@
+## Run project
+
+- For some reason, running FE and BE separately worked better for me. I didn't have time to investigate this as completing the task was the priority.
+- Download or clone the project.
+- `npm install`
+- `npm run BE-start`
+- `npm run FE-start`
+
 ## Applications.tsx
 
 ### Updated Code
@@ -36,7 +44,3 @@
 
 - Created to test the rendering of application details.
 - Uses a mock application object to test if the component correctly displays the data.
-
-## Misc
-
-- For some reason, running FE and BE separately worked better for me. I didn't have time to investigate this as completing the task was the priority.
