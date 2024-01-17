@@ -2,4 +2,33 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.ApplicationsButton {
+  text-align: center;
+  margin: 42px 0;
+}
+
+@media (min-width: 768px) {
+  .Applications {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .Applications {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1199px) {
+  .Applications {
+    padding: 0;
+    display: block;
+  }
 }

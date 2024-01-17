@@ -5,33 +5,37 @@ import styles from './Applications.module.css'
 
 const Applications = () => {
   const [applications, setApplications] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
+  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(true)
   const limit = 5
 
   useEffect(() => {
     fetchApplications()
-  }, [currentPage])
+  }, [page])
 
   const fetchApplications = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/applications?_page=${currentPage}&_limit=${limit}`)
+      const response = await fetch(`http://localhost:3001/api/applications?_page=${page}&_limit=${limit}`)
+
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`)
       }
       const data = await response.json()
       setApplications(prev => [...prev, ...data])
+      setLoading(false)
     } catch (error) {
       console.error('Failed to fetch applications:', error)
     }
   }
 
   const handleLoadMore = () => {
-    setCurrentPage(prev => prev + 1)
+    setPage(prev => prev + 1)
   }
 
   return (
     <>
       <div className={styles.Applications}>
+        {loading && <p>Loading...</p>}
         {applications.map(application => (
           <SingleApplication
             key={application.id}
@@ -39,12 +43,14 @@ const Applications = () => {
           />
         ))}
       </div>
-      <Button
-        onClick={handleLoadMore}
-        className={styles.loadMoreButton}
-      >
-        Load More
-      </Button>
+      <div className={styles.ApplicationsButton}>
+        <Button
+          onClick={handleLoadMore}
+          className={styles.loadMoreButton}
+        >
+          Load More
+        </Button>
+      </div>
     </>
   )
 }
