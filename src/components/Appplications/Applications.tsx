@@ -21,7 +21,11 @@ const Applications = () => {
         throw new Error(`Error: ${response.status}`)
       }
       const data = await response.json()
-      setApplications(prev => [...prev, ...data])
+      setApplications(prev => {
+        const existingIds = new Set(prev.map(app => app.id))
+        const newApplications = data.filter(app => !existingIds.has(app.id))
+        return [...prev, ...newApplications]
+      })
       setLoading(false)
     } catch (error) {
       console.error('Failed to fetch applications:', error)
@@ -31,6 +35,8 @@ const Applications = () => {
   const handleLoadMore = () => {
     setPage(prev => prev + 1)
   }
+
+  console.log(applications)
 
   return (
     <>
